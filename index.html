@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Till Reconciler</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Till Reconciler</h1>
+    </header>
+    <main id="calculator">
+      <div class="input-group">
+        <label for="sales">Sales ($):</label>
+        <input id="sales" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="final-change">Final Change ($):</label>
+        <input id="final-change" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="card-machine">Card Machine ($):</label>
+        <input id="card-machine" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="delivery">Delivery ($):</label>
+        <input id="delivery" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="expense">Expense ($):</label>
+        <input id="expense" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="signed-bill">Signed Bill ($):</label>
+        <input id="signed-bill" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="voucher">Voucher ($):</label>
+        <input id="voucher" type="text" placeholder="0.00" />
+      </div>
+      <div class="result-group">
+        <span>Subtotal:</span>
+        <span id="subtotal">$ 0.00</span>
+      </div>
+      <div class="input-group">
+        <label for="initial-change">Initial Change ($):</label>
+        <input id="initial-change" type="text" placeholder="0.00" />
+      </div>
+      <div class="input-group">
+        <label for="deduction-rate">Deduction Rate (%):</label>
+        <input id="deduction-rate" type="text" placeholder="0" />
+      </div>
+      <div class="result-group">
+        <span>Deduction:</span>
+        <span id="deduction">$ 0.00</span>
+      </div>
+      <div class="result-group">
+        <span>Total:</span>
+        <span id="total">$ 0.00</span>
+      </div>
+      <div class="result-group">
+        <span>Difference:</span>
+        <span id="difference">$ 0.00</span>
+      </div>
+    </main>
+  </div>
+  <script src="./main.js" defer></script>
+</body>
+</html>
