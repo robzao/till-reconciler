@@ -19,7 +19,6 @@ const updateDisplay = (result) => {
   deductionDisplay.textContent = formatCurrency(result.deductionAmount);
   totalDisplay.textContent = formatCurrency(result.total);
   differenceDisplay.textContent = formatCurrency(result.difference);
-  
   differenceDisplay.classList.remove('text-red', 'text-green', 'text-neutral');
   if (result.difference > 0) {
     differenceDisplay.classList.add('text-green');
@@ -43,15 +42,10 @@ const parseCurrency = (sanitizedValue) => {
 
 const calculate = (sales, finalChange, cardMachine, delivery, expense, signedBill, voucher, initialChange, deductionRate) => {
   const subtotal = sales + signedBill + voucher;
-  
-  const deductionAmount = subtotal * (deductionRate / 100); 
-
+  const deductionAmount = subtotal * (deductionRate / 100);
   const cashSales = subtotal - cardMachine - delivery - expense;
-  
   const expectedCash = cashSales + initialChange - deductionAmount;
-  
   const difference = finalChange - expectedCash;
-
   return { subtotal, deductionAmount, total: expectedCash, difference };
 };
 
@@ -61,7 +55,6 @@ const handleCalculation = () => {
     input.value = sanitized;
     return parseCurrency(sanitized);
   };
-  
   const sales = sanitizeAndParse(salesInput);
   const finalChange = sanitizeAndParse(finalChangeInput);
   const cardMachine = sanitizeAndParse(cardMachineInput);
@@ -71,16 +64,13 @@ const handleCalculation = () => {
   const voucher = sanitizeAndParse(voucherInput);
   const initialChange = sanitizeAndParse(initialChangeInput);
   const deductionRate = sanitizeAndParse(deductionRateInput);
-  
   const result = calculate(sales, finalChange, cardMachine, delivery, expense, signedBill, voucher, initialChange, deductionRate);
   updateDisplay(result);
 };
 
 const setupEventListeners = () => {
   const inputs = document.querySelectorAll('#calculator input');
-  inputs.forEach(input => {
-    input.addEventListener('input', handleCalculation);
-  });
+  inputs.forEach(input => { input.addEventListener('input', handleCalculation) });
 };
 
 const init = () => {
