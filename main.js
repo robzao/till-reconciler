@@ -44,14 +44,16 @@ const clearAll = () => {
 };
 
 const sanitizeInput = (rawValue) => {
-  const value = rawValue.replace(/[^\d.]/g, '');
+  let value = rawValue.replace(/[^\d.]/g, '');
   const parts = value.split('.');
-  return parts.length > 2 ? parts[0] + '.' + parts.slice(1).join('') : value;
+  if (parts.length > 2) value = parts[0] + '.' + parts.slice(1).join('');
+  if (value.startsWith('-')) value = value.substring(1);
+  return value;
 };
 
 const parseCurrency = (sanitizedValue) => {
   const numericValue = parseFloat(sanitizedValue);
-  return isNaN(numericValue) ? 0 : numericValue;
+  return (isNaN(numericValue) || numericValue < 0) ? 0 : numericValue;
 };
 
 const calculate = (s, fc, cm, d, e, sb, v, ic, dr) => {
@@ -63,28 +65,30 @@ const calculate = (s, fc, cm, d, e, sb, v, ic, dr) => {
   return { subtotal, deductionAmount, total: expectedCash, difference };
 };
 
+const handleInput = (e) => {
+  const input = e.target;
+  input.value = sanitizeInput(input.value);
+  handleCalculation();
+};
+
 const handleCalculation = () => {
-  const sanitizeAndParse = (input) => {
-    const sanitized = sanitizeInput(input.value);
-    input.value = sanitized;
-    return parseCurrency(sanitized);
-  };
-  const s = sanitizeAndParse(sales);
-  const fc = sanitizeAndParse(finalChange);
-  const cm = sanitizeAndParse(cardMachine);
-  const d = sanitizeAndParse(delivery);
-  const e = sanitizeAndParse(expense);
-  const sb = sanitizeAndParse(signedBill);
-  const v = sanitizeAndParse(voucher);
-  const ic = sanitizeAndParse(initialChange);
-  const dr = sanitizeAndParse(deductionRate);
+  const parseCurrentValue = (input) => parseCurrency(input.value);
+  const s = parseCurrentValue(sales);
+  const fc = parseCurrentValue(finalChange);
+  const cm = parseCurrentValue(cardMachine);
+  const d = parseCurrentValue(delivery);
+  const e = parseCurrentValue(expense);
+  const sb = parseCurrentValue(signedBill);
+  const v = parseCurrentValue(voucher);
+  const ic = parseCurrentValue(initialChange);
+  const dr = parseCurrentValue(deductionRate);
   const result = calculate(s, fc, cm, d, e, sb, v, ic, dr);
   updateDisplay(result);
 };
 
 const setupEventListeners = () => {
   const inputs = document.querySelectorAll('#calculator input');
-  inputs.forEach(input => { input.addEventListener('input', handleCalculation) });
+  inputs.forEach(input => { input.addEventListener('input', handleInput) });
   resetButton.addEventListener('click', clearAll);
 };
 

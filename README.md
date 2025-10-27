@@ -14,17 +14,17 @@ The calculation flow focuses on verifying the cash balance by isolating non-cash
 
 ### Input Fields
 
-| Field | Description |
-| :--- | :--- |
-| **Sales ($)** | The total expected sales value from the Point of Sale (POS) system. (Baseline Revenue) |
-| **Final Change ($)** | The physical amount of cash counted and left in the till at the end of the shift. (Actual Count) |
-| **Card Machine ($)** | The total value processed through credit and debit card terminals (non-cash revenue). |
-| **Delivery ($)** | The total amount received through external delivery platforms (non-cash revenue). |
-| **Expense ($)** | Cash paid out of the till for small operational expenses. |
-| **Signed Bill ($)** | Vouchers or notes signed by management/staff counted as cash equivalent (e.g., house charges). |
-| **Voucher ($)** | The total value of external payment vouchers or tickets. |
-| **Initial Change ($)** | The starting cash fund amount when the shift began (the "float"). |
-| **Deduction Rate (%)** | The **percentage** to be deducted from the Subtotal (e.g., Owner Draw or Service Fee). |
+| Field | Restriction | Description |
+| :--- | :--- | :--- |
+| **Sales ($)** | Number >= 0 | The total expected sales value from the Point of Sale (POS) system. (Baseline Revenue) |
+| **Final Change ($)** | Number >= 0 | The physical amount of cash counted and left in the till at the end of the shift. (Actual Count) |
+| **Card Machine ($)** | Number >= 0 | The total value processed through credit and debit card terminals (non-cash revenue). |
+| **Delivery ($)** | Number >= 0 | The total amount received through external delivery platforms (non-cash revenue). |
+| **Expense ($)** | Number >= 0 | Cash paid out of the till for small operational expenses. |
+| **Signed Bill ($)** | Number >= 0 | Vouchers or notes signed by management/staff counted as cash equivalent (e.g., house charges). |
+| **Voucher ($)** | Number >= 0 | The total value of external payment vouchers or tickets. |
+| **Initial Change ($)** | Number >= 0 | The starting cash fund amount when the shift began (the "float"). |
+| **Deduction Rate (%)** | Number >= 0 | The **percentage** to be deducted from the Subtotal (e.g., Owner Draw or Service Fee). |
 
 ### Calculation Logic
 
